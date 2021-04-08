@@ -142,7 +142,7 @@ In octave we get the values present in Tabel \ref{tab:op}
 \subsection{Equivalent Resistance}
 \label{subsec:Nat_Sol_theory}
 
-In this subsection, it is intended to obtain the equivalent resistance of the circuit as seen from the capacitor terminals (at $t=0$, the time in which the circuit will transform into an AC circuit). We need $R_{eq}$ to obtain the natural solution to the differential equation that governs $v_6$. For this, the original independent voltage source is turned to zero, but the voltage drop in the capacitor should remain the same, because we assume the capacitor is fully charged (as mentioned in the previous subsection) and we need this voltage drop to obtain the current running through the capacitor ($I_x$) and, ultimately, $R_eq$, since $R_eq = \frac{V_x}{I_x}$ Therefore, $v_s=0$ and we replace the capacitor for an independent voltage source $V_x = V_6 - V_8$.
+In this subsection, it is intended to obtain the equivalent resistance of the circuit as seen from the capacitor terminals (at $t=0$, the time in which the circuit will transform into an AC circuit). We need $R_{eq}$ to obtain the natural solution to the differential equation that governs $v_6$. For this, the original independent voltage source is turned to zero, but the voltage drop in the capacitor should remain the same, because we assume the capacitor is fully charged (as mentioned in the previous subsection) and we need this voltage drop to obtain the current running through the capacitor ($I_x$) and, ultimately, $R_{eq}$, since $R_{eq} = \frac{V_x}{I_x}$ Therefore, $v_s = 0$ and we replace the capacitor for an independent voltage source $V_x = V_6 - V_8$.
 
 To make the matriz we used the following equations:
 
@@ -179,7 +179,7 @@ The equations that will complete this sistem is present in the previous section.
 
 Once we know all the parameters in this sistem, we can calculate $I_x$ using the Kirchhoff Current Law (KCL):
 
-\texit{Node 6}:
+\textit{Node 6}:
 \begin{equation}
   I_{x} + (V_{2} - V_{5})K_{b} + (V_{5} - V_{6})G_{6} = 0
 \end{equation}
@@ -187,7 +187,7 @@ Once we know all the parameters in this sistem, we can calculate $I_x$ using the
 Once we have $V_x$ and $I_x$, the $R_{eq}$ is determined with:
 
 
-\texit{Node 6}:
+\textit{Node 6}:
 \begin{equation}
   R_{eq} = \frac{V_x}{I_x}
 \end{equation}
@@ -211,7 +211,7 @@ These calculations were done in octave and it's values are present in Table \ref
 \subsection{Natural Solution $V_{6n}(t)$}
 \label{subsec:Nat_Sol_theory}
 
-In this subsection, we want to determine $v_6(t)$ with $v_s(t) = 0$. As learned in theory classes, we can describe this using the equation ??
+In this subsection, we want to determine $v_6 (t)$ with $v_s(t) = 0$. As learned in theory classes, we can describe this using the equation ??
 
 !!!!
 

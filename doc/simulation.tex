@@ -3,6 +3,8 @@
 
 To accurately simulate the circuit in \textit{Ngspice}, precaution is needed with the positive and negative nodes associated with each component, since an error in these parameters would cause currents and voltage sources operating in the wrong direction.
 
+It's important to add that due to a peculiarity of the program, we couldn't get the current in the resistance $R_6$ as a reference for the current dependent voltage source. To solve that, we created a "dummy" voltage source (valued 0) right below the ground node in that same branch, so that the program could get a valid read.
+
 
 \subsection{Operating Point Analysis for $t<0$}
 \label{subsec:OP_t<0}
@@ -47,7 +49,7 @@ The purpose in simulating the operation point in the circuit analogous to the on
 \subsection{Transient Analysis for natural solution}
 \label{subsec:trans_nat}
 
-In the present subsection, we perform a transient analysis to the original circuit in Figure ??? (adding the "dummy" null voltage source mentioned in the beginning of this section) with $v_s = 0$, and using $V_6$ and $V_8$, obtained in the previous subsection, as boundary conditions, in order to obtain $v_{6n}(t)$ in the [0, 20]ms time interval.
+In the present subsection, we perform a transient analysis to the original circuit in Figure \ref{OG} (adding the "dummy" null voltage source mentioned in the beginning of this section) with $v_s = 0$, and using $V_6$ and $V_8$, obtained in the previous subsection, as boundary conditions, in order to obtain $v_{6n}(t)$ in the [0, 20]ms time interval.
 
 The results are plotted in Figure \ref{plot3S}
 \begin{figure}[h]
@@ -85,9 +87,9 @@ In Figure \ref{plot4S}, both the stimulus and $v_6(t)$ response are plotted for 
 
 In this last subsection, we present the tables and plots obtained from the Theoretical Analysis and the Simulations Analysis that refer to the same sets of evaluations, for visualization purposes, and comment on their similarities or discrepancies.
 
-While analysing the mesh currents and nodal voltages in $t<0$, the tables in Figure ?? were determined.
+While analysing the mesh currents and nodal voltages in $t<0$, the tables in Figure ?? were produced.
 
-!!!!!!!
+!!!!
 
 While analysing for the ????????? , the tables in Figure ?? were determined
 
