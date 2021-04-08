@@ -345,11 +345,13 @@ fclose(fid5);
 
 
 %--------------6-------------
+phi_Vs = pi/2
+Vs_p= 1*power(e,-j*phi_Vs)
+
 
 f =-1:0.1:6; %Hz
 w = 2*pi*power(10,f);
-phi_Vs = pi/2
-Vs_p= 1*power(e,-j*phi_Vs)
+
 
 Vs_p= 1*power(e,-j*phi_Vs);
 Zc=1. ./ (j .* w .* C);
@@ -363,8 +365,8 @@ B_B = [0; 0; -Vs_p/R1; 0];
 B_C=linsolve(B_A,B_B); % v2, v3, v5, v7
  
 V8_6 = R7*(1./R1+1./R6)*B_C(4) + 0*Zc;
-V6_6 = ( (1./R5+Kb)*B_C(3)-Kb*B_C(1)+ (V8_6 ./ Zc)) ./ (1./R5 + 1. ./ Zc);
-Vc = V6_6 - V8_6;
+V6_6 = ((1./R5+Kb)*B_C(3)-Kb*B_C(1)+ (V8_6 ./ Zc)) ./ (1./R5 + 1. ./ Zc);
+Vc = V6_6  - V8_6;
 Vs_6 = power(e,j*pi/2) + 0*w;
 
 
@@ -374,27 +376,31 @@ hold on;
 plot (f, 20*log10(abs(V6_6)), "b");
 hold on;
 plot (f, 20*log10(abs(Vs_6)), "g");
-
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Magnitude v_s(f), v_6(f), v_c(f) [dB]");
 print (hf, "db_teorica.eps", "-depsc");
 
+
+
 V6_a = 180/pi*(angle(V6_6));
 
+
 for  i=1:length(V6_a)
-	if(V6_a(i)<=-90) 
+        if(V6_a(i)<=-90) 
 		V6_a(i) += 180;
 	elseif (V6_a(i)>=90) 
 		V6_a(i) -= 180;
 endif
 endfor
 
+
 hf = figure ();
-plot (f, 180/pi*(angle(Vc)) + pi, "r");
+plot (f, 180/pi*(angle(Vc) + pi), "r");
 hold on;
 plot (f, V6_a, "b");
 hold on;
 plot (f, 180/pi*angle(Vs_6), "g");
+
 
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_s(f), v_6(f), v_c(f) [degrees]");
