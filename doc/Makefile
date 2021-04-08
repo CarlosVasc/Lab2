@@ -9,7 +9,7 @@ LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
 all: $(FILE).pdf
 	evince $< &
 
-$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) python octave.log ngspice ngspice2 ngspice3.log ngspice4.log
+$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) python octave.log ngspice ngspice2 ngspice3.log ngspice4.log ngspice5.log
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
@@ -47,6 +47,16 @@ ngspice3.log: ../sim/Ng3.cir
 	ngspice -b $< -o $@
 
 ngspice4.log: ../sim/Ng4.cir
+	ngspice -b $< -o $@
+
+ngspice5: ngspice5.log
+	$(eval NGSFIGS2=$(shell grep _FIG2 $< | sed 's/_FIG2//g' | sed ':a;N;$!ba;s/\n/ /g'))
+	$(eval NGSFIGPS2=$(addsuffix .ps, $(NGSFIGS2)))
+	$(eval NGSTABS2=$(shell grep _TAB2 $< | sed 's/_TAB2//g' | sed ':a;N;$!ba;s/\n/ /g'))
+	$(foreach l, $(NGSTABS2), sed -n '/^$l_TAB2/,/^$l_END2/{p;/^$l_END2/q}' $< | grep -v $l_TAB2 | grep -v $l_END2 | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $l_tab2.tex;)
+	$(foreach l, $(NGSFIGPS2), ps2pdf $l;)
+
+ngspice5.log: ../sim/Ng5.cir
 	ngspice -b $< -o $@
 
 	
