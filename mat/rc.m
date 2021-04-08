@@ -87,6 +87,15 @@ Ib= NC(10);
 Ic= NC(11);
 Id= NC(12);
 
+I_R1 = G1*(V1 - V2)
+I_R2 = G2*(V2 - V3)
+I_R3 = G3*(V5 - V2)
+I_R4 = V5*G4
+I_R5 = G5*(V6 - V5)
+I_R6 = -V7*G6
+I_R7 = G7*(V7 - V8)
+
+
 %Criar ficheiro octave teorico
 fid11=fopen("teorico1.tex","w+");
 fprintf(fid11,"V1 & %f\\\\ \\hline \n\
@@ -96,9 +105,14 @@ V5 & %f\\\\ \\hline \n\
 V6 & %f\\\\ \\hline \n\
 V7 & %f\\\\ \\hline \n\
 V8 & %f\\\\ \\hline \n\
-Id & %f\\\\ \\hline", V1,V2,V3,V5,V6,V7,V8,Id)
+IR1 & %f\\\\ \\hline \n\
+IR2 & %f\\\\ \\hline \n\
+IR3 & %f\\\\ \\hline \n\
+IR4 & %f\\\\ \\hline \n\
+IR5 & %f\\\\ \\hline \n\
+IR6 & %f\\\\ \\hline \n\
+IR7 & %f\\\\ \\hline", V1,V2,V3,V5,V6,V7,V8,I_R1,I_R2,I_R3,I_R4,I_R5,I_R6,I_R7)
 fclose(fid11)
-
 
 
 fid12=fopen("ngspice_1.tex","w");
