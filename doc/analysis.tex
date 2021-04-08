@@ -7,123 +7,82 @@
 
 The circuit consists of 8 nodes: 0 (ground), 1, 2, 3, 5, 6, 7 and 8, respectively associated with nodal voltages $V_0$, $V_1$, $V_2$, $V_3$, $V_5$, $V_6$, $V_7$ and $V_8$ (seen in Figure~\ref{fig:OG_circ}). 
 
-% O que está para baixo, até ao próximo comentario, não está bem, de madrugada
+% O que está para baixo
 
-The nodal equations obtained with the nodal method pertain to the mentioned nodes as presented next. 
-The following "nodal" equations are KCL equations applied to the nodes, except equations \ref{eq:N_0}, \ref{eq:N_4_2} 
-and \ref{eq:N_6}. \\
-\\
-\textit{Node 0}:
-\begin{equation}
-  V_0=0
-  \label{eq:N_0}
-\end{equation}
-\textit{Node 1}:
-\begin{equation}
-    (V_1 - V_0) \cdot G_1 + (V_1 - V_2) \cdot G_2 + V_b \cdot G_3 = 0
-    \label{eq:N_1}
-\end{equation}
-\textit{Node 2}:
-\begin{equation}
-    (V_2 - V_1) \cdot G_2 - K_b \cdot V_b = 0
-    \label{eq:N_2}
-\end{equation}
-\textit{Node 3}:
-\begin{equation}
-    (V_3 - V_7) \cdot G_5 - I_d + K_b \cdot V_b = 0
-    \label{eq:N_3}
-\end{equation}
-\textit{Node 4}:
-\begin{equation}
-    (V_5 - V_4) \cdot G_7 + I_{V_C} - I_d = 0
-    \label{eq:N_4_1}
-\end{equation}
-\begin{equation}
-    V_4 = - V_c + V_7
-    \label{eq:N_4_2}
-\end{equation}
-\textit{Node 5}:
-\begin{equation}
-  (V_5 - V_6) \cdot G_6 + (V_5 - V_4) \cdot G_7 = 0
-  \label{eq:N_5}
-\end{equation}
-\textit{Node 6}:
-\begin{equation}
-    V_6 = - V_a
-  \label{eq:N_6}
-\end{equation}
-\textit{Node 7}:
-\begin{equation}
-  I_{V_C} + (V_7 - V_3) \cdot G_5 + (V_7 - V_2) \cdot G_3 + (V_7 - V_6) \cdot G_4 = 0
-  \label{eq:N_7}
-\end{equation}
+Because we are considering a DC voltage source, there is no current variation, hence the current $I_c=0$, so its consideres as being an open circuit between $V_6$ and $V_8$.
 
-To obtain a determined linear system of equations, three other equations are added. Both $V_b$ and $I_c$ need to be written as a function of nodal voltages, as shown in equations \ref{eq:Add_Vb} and \ref{eq:Add_Ic}. $V_C$ should be equated as shown in Figure \ref{fig:esq} and as written in equation \ref{eq:Add_Vc}.
-
-\begin{equation}
-    V_b = V_1 - V_7
-    \label{eq:Add_Vb}
-\end{equation}
-
-\begin{equation}
-    V_5 + I_c \cdot R_6 = V_6 \Leftrightarrow I_c = (V_6 - V_5) \cdot G_6
-    \label{eq:Add_Ic}
-\end{equation}
-
-\begin{equation}
-    V_c = K_c \cdot I_c
-    \label{eq:Add_Vc}
-\end{equation}
-
-
-Applying the added equations \ref{eq:Add_Vb}, \ref{eq:Add_Ic} and \ref{eq:Add_Vc} to the previously presented nodal 
-equations, the system of linear equations (produced in matrix form) is \ref{eq:nodal_matrix_A} and \ref{eq:nodal_matrix_syst}.
+By first looking at the circuit we can assume the following equalities:
 
 
 \begin{equation}
-    A =
-    \begin{bmatrix}
-        0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-        -1 & 0 & 0 & 1 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0\\
-        -K_b & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-        0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & K_d\\
-        0 & -1 & 0 & 0 & 0 & 1 & 0 & 0 & -1 & 0 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0 & 0 & 0 & -G_6 & 0 & 0 & 0 & -1\\
-        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
-        0 & 0 & -G_1 & (G1+G2+G3) & -G_2 & -G3 & 0 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 0 & -G_2-K_b & G_2 & K_b & 0 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 0 & K_b & 0 & -K_b-G_5 & G_5 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0 & 0 & 0 & (G7+G6) & -G7 & 0 & 0 & 0\\
-        0 & 0 & G_1 & -G_1 & 0 & -G_4 & 0 & 0 & 0 & 0 & 0 & 1\\
-        
-    \end{bmatrix}
-    \label{eq:nodal_matrix_A}
+  V_1=V_s
+  \label{eq:N_1}
 \end{equation}
+
 
 \begin{equation}
-    A \cdot
-  \begin{bmatrix}
-    V_b\\
-    V_c\\
-    V_1\\
-    V_2\\
-    V_3\\
-    V_5\\
-    V_6\\
-    V_7\\
-    V_8\\
-    I_b\\
-    I_c\\
-    I_d\\
-  \end{bmatrix}
-    =
-  \begin{bmatrix}
-    V_s\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0
-  \end{bmatrix}
-  \label{eq:nodal_matrix_syst}
+    I_c=0
+    \label{eq:aux}
 \end{equation}
 
-% O que está para cima, até ao comentario, ainda não está bem, de madrugada
+
+\begin{equation}
+    K_b\cdot V_b - I_b =0
+    \label{eq:aux1}
+\end{equation}
+
+
+\begin{equation}
+    -V_c + K_d \cdot I_d=0
+    \label{eq:aux2}
+\end{equation}
+
+
+\begin{equation}
+    -V_b + V_2 - V_5 = 0
+    \label{}
+\end{equation}
+
+ \begin{equation}
+     (V_5-V_8) + V_d=0
+ \end{equation}
+
+
+
+
+%\Using Ohm's Law
+
+The other equations needed to solve this problem can be achived with Kirchoff's Current Law (KCL) and Ohm's Law:
+
+\textit{Supernode 1}
+\begin{equation}
+    G_1 \cdot (V_1 - V_2) + G_4 \cdot V_5 +I_d=0
+ \end{equation}
+ 
+
+
+\textit{Node 2}
+\begin{equation}
+    G_1 \cdot (V_2 - V_1) + G_2 \cdot (V_2 - V_3) + G_3 \cdot(V_2 -V_5)=0
+\end{equation}
+
+\textit{Node 3}
+\begin{equation}
+    G_2 \cdot (V_3 - V_2) + K_b \cdot (V_5 - V_2)=0
+\end{equation}
+
+\textit{Node 6}
+\begin{equation}
+    K_b \cdot (V_2 - V_5) + G_5 \cdot (V_6-V_5)=0
+\end{equation}
+
+\textit{Node 7}
+\begin{equation}
+    G_7 \cdot(V_7 - V_8) + G_6\cdot V_7=0
+\end{equation}
+
+
+% O que está para cima, 
 
 In order to obtain the currents running through branches formed by resistors, Ohm's law is applied. Furthermore, given that this is yet a DC circuit and assuming its in a stationary state (a lot of time has passed and the capacitor is fully charged), there is no current in the capacitor's branch. All the other branches are formed by sources and all of them are associated with one node that is "connected" to only one other branch, of which the current is known (they are resistor branches). Hence, applying KCL to these ("in common") nodes, the last unknown currents are obtained.
 
@@ -215,7 +174,7 @@ These calculations were done in Octave and it's values are present in Table \ref
 \subsection{Natural Solution $V_{6n}(t)$}
 \label{subsec:Nat_Sol_theory}
 
-In this subsection, we want to determine $v_6 (t)$ with $v_s(t) = 0$. As learned in theory classes, we can describe this using the equation \ref{Nat_sol}
+In this subsection, we want to determine $v_6 (t)$ with $v_s(t) = 0$. As learned in theory classes, we can describe this using the equation \ref{eq:Nat_sol}.
 
 \begin{equation}
   v_{6n}(t) = K \cdot e^{\frac{-t}{RC}}
