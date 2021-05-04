@@ -8,14 +8,12 @@ Vfonte = 230;
 f=50;
 w=2*pi*f;
 
-R1 = 30000;
+R1 = 20000;
 C = 10e-6;
-R2 = 30000;
+R2 = 2000;
 voltas = 17;
 
 A = Vfonte/voltas;
-
-
 t=linspace(0, 0.2, 1000);
 
 vs=A*cos(w*t); %depois de transformador
@@ -48,13 +46,10 @@ ripple = max(v0) - min(v0);
 
 n_diodes = 17;
 Von = 0.7;
-
 v0_2_dc = Von*n_diodes;
-
 vt = 0.025;
 Is = 1e-14;
 n = 1;
-
 Rd = n*vt/(Is*exp(Von/(n*vt)))
 
 for i = 1:length(t)
@@ -62,26 +57,24 @@ for i = 1:length(t)
 end
 
 v0_2 = v0_2_dc + v0_2_ac;
-
-average_reg = mean(v0_2)
-ripple_reg = max(v0_2)-min(v0_2) 
-
-cost = R1/1000 + R2/1000 + C*1e6 + (n_diodes+0.4)*0.1; 
-MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6));
+averageR = mean(v0_2);
+rippleR = max(v0_2)-min(v0_2); 
+cost = R1/1000 + R2/1000 + (n_diodes+0.4)*0.1+ C*1e6 ; 
+merito = 1/(cost*(rippleR + abs(averageR - 12) + 1e-6))
 
 
 %grafs
 fid1 = figure();
-plot (t*1000, vs, ";vs transformer;", t*1000,v0, ";vo envelope;", t*1000,v0_2, ";vo regulator;");
-xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
+plot (t*1000, vs, ";vs in transformer;", t*1000,v0, ";v in envelope;", t*1000,v0_2, ";v in regulator;");
+xlabel ("t(ms)")
+ylabel ("v (Volts)")
 legend('Location','southeast');
 print (fid1, "V_todas.eps", "-depsc");
 
 
 fid2 = figure();
 plot (t*1000,v0_2-12);
-xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
+xlabel ("t(ms)")
+ylabel ("v (Volts)")
 print (fid2, "diferença.eps", "-depsc");
 
