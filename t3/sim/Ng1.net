@@ -1,0 +1,97 @@
+*Sim of Lab3
+
+
+*forces current values to be saved
+.options savecurrents
+
+
+*define diode
+.model Default D
+
+
+*voltage source after transformer n = 17
+Vin 3 1 sin(0 20.90909090 50 0 0 90)
+
+
+*envelope detector circuit
+R1 3 2 8k
+*is it 8k??
+*are the values coherent with octave?
+C 3 2 100u
+*are the values coherent with octave?
+
+D0 2 1 Default
+D1 1 3 Default
+D2 2 0 Default
+D3 0 3 Default
+
+
+*voltage regulator
+R2 3 4 68.84k
+*are the values coherent with octave?
+D4 4 5 Default
+D5 5 6 Default
+D6 6 7 Default
+D7 7 8 Default
+D8 8 9 Default
+D9 9 10 Default
+D10 10 11 Default
+D11 11 12 Default
+D12 12 13 Default
+D13 13 14 Default
+D14 14 15 Default
+D15 15 16 Default
+D16 16 17 Default
+D17 17 18 Default
+D18 18 19 Default
+D19 19 20 Default
+D20 20 21 Default
+D21 21 22 Default
+D22 22 2 Default
+
+
+*colours
+set hcopypscolor=1
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+
+*simulations
+.control
+
+
+*transient/circuit simulation
+tran 0.000015 200e-3
+
+
+*the rest
+meas tran v_avg AVG v(4) from=0m to=100e-3
+meas tran v_max v(4) from=0m to=100e-3
+meas tran v_min MIN v(4) from=0m to=100e-3
+print v_avg
+print v_avg-v_min
+
+plot (v(3)-v(2))
+hardcopy edc_output.ps v(3)-v(2)
+
+plot (v(4)-v(2))
+hardcopy vr_output.ps v(4)-v(2)
+
+plot (v(4)-v(2)-12)
+hardcopy final.ps v(4)-v(2)-12
+
+
+quit
+.endc
+.end
+
+
+
+
+
+
