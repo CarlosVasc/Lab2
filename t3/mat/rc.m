@@ -3,20 +3,19 @@ clear all
 pkg load symbolic
 pkg load control
 pkg load signal
-%--------------------  DADOS  ----------------------- 
 
 Vfonte = 230;
 f=50;
 w=2*pi*f;
 
-R1 = 10000;
+R1 = 30000;
 C = 10e-6;
-R2 = 1000;
+R2 = 30000;
 voltas = 17;
 
 A = Vfonte/voltas;
 
-%------------------------Envelope Detector----------------------
+
 t=linspace(0, 0.2, 1000);
 
 vs=A*cos(w*t); %depois de transformador
@@ -45,10 +44,10 @@ average = mean(v0);
 ripple = max(v0) - min(v0);
 
 
-%-------------------------Voltage Regulator----------------------------------
+%Regulador
 
-n_diodes = 19;
-Von = 0.632;
+n_diodes = 17;
+Von = 0.7;
 
 v0_2_dc = Von*n_diodes;
 
@@ -68,10 +67,10 @@ average_reg = mean(v0_2)
 ripple_reg = max(v0_2)-min(v0_2) 
 
 cost = R1/1000 + R2/1000 + C*1e6 + (n_diodes+0.4)*0.1; 
-MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6))
+MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6));
 
 
-%plots ----
+%grafs
 fid1 = figure();
 plot (t*1000, vs, ";vs transformer;", t*1000,v0, ";vo envelope;", t*1000,v0_2, ";vo regulator;");
 xlabel ("t[ms]")
