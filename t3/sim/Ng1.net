@@ -71,11 +71,11 @@ tran 0.000015 200e-3
 
 
 *the rest
-meas tran Vavg AVG v(4) from=0m to=100e-3
-meas tran Vmax v(4) from=0m to=100e-3
-meas tran Vmin MIN v(4) from=0m to=100e-3
-print Vavg
-print Vavg-Vmin
+meas tran v_avg AVG v(4) from=0m to=100e-3
+meas tran v_max MAX v(4) from=0m to=100e-3
+meas tran v_min MIN v(4) from=0m to=100e-3
+print v_avg
+print v_avg-v_min
 
 plot v(3)
 hardcopy edc_output.ps v(3)
