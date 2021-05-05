@@ -42,7 +42,7 @@ D16 16 17 Default
 D17 17 18 Default
 D18 18 19 Default
 D19 19 20 Default
-D20 20 21 Default
+D20 20 0 Default
 
 
 
@@ -71,16 +71,16 @@ meas tran v_avg AVG v(4) from=0m to=100e-3
 meas tran v_max MAX v(4) from=0m to=100e-3
 meas tran v_min MIN v(4) from=0m to=100e-3
 print v_avg
-print v_avg-v_min
+print v_max-v_min
 
 plot v(3)
-hardcopy edc_output.ps v(3)
+hardcopy v_3.eps v(3)
 
 plot v(4)
-hardcopy vr_output.ps v(4)
+hardcopy v_4.eps v(4)
 
 plot (v(4)-12)
-hardcopy final.ps v(4)-12
+hardcopy delta_v.eps v(4)-12
 
 
 quit

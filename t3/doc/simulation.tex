@@ -3,18 +3,36 @@
 
 In this section, the intent is to simulate the circuit, using \textit{Ngspice}.
 
-Firstly, the AC/DC converter was subjected to a transient simulation for 10 periods. Then the outputs of the envelope detector and voltage regulator circuits were plotted as shown in the following figures, along with the output AC component plus DC Deviation plot.
+Firstly, the AC/DC converter was subjected to a transient simulation for 19 periods. Then the outputs of the envelope detector and voltage regulator circuits were plotted as shown in the following figures, along with the output AC component plus DC Deviation plot.
 
-!!!!!!!!!!!!!!
+\begin{figure}[h]
+\centering
+\caption{Voltage after the envelper detector}
+\includegraphics[width=0.6\linewidth]{v_3.eps}
+\label{plot5}
+\end{figure}
 
+\begin{figure}[h]
+\centering
+\caption{Voltage after the regulator}
+\includegraphics[width=0.6\linewidth]{v_4.eps}
+\label{plot6}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Voltage diference between the regulator and the 12 V DC}
+\includegraphics[width=0.6\linewidth]{delta_v.eps}
+\label{plot7}
+\end{figure}
 
 The output voltage ripple and the DC level were simulated aswell and are as follows.
 
 \begin{equation}
-    V_{Ripple} = ????
+    V_{Ripple} = 0.2933 V
 \end{equation}
 \begin{equation}
-    DC Level = ???
+    DC Level = 10.798
 \end{equation}
 
 
@@ -26,5 +44,5 @@ In this last subsection, we present the values and plots obtained from the Theor
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
 
 
-All in all, there is an obvious difference between the theoretical and simulation results. The results obtained using \textit{Ngspice} are closer to the aimed values and oscillate less. The values obtained with Octave are smaller ($v_4(t)$ is closer to 11V, for example). Nevertheless, the overall wave forms are similar, the frequency of the signals is the same, and, by both approaches, the results satisfyingly accurate. 
+All in all, there is an obvious difference between the theoretical and simulation results. The results obtained using \textit{Octave} are closer to the aimed values and oscillate less. The values obtained with \textit{Ngspice} are smaller ($v_4(t)$ is closer to 11V, for example). Nevertheless, the overall wave forms are similar, the frequency of the signals is the same, and, by both approaches, the results satisfyingly accurate. 
 The discrepancies stem from the different considerations made in the theoretical model and in the Ngspice software's models. In the Ngspice models, the approximations used when diodes are involved are much more complex and accurate.

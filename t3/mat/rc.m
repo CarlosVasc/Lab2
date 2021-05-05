@@ -17,9 +17,7 @@ A = Vfonte/voltas;
 t=linspace(0, 0.2, 1000);
 
 vs=A*cos(w*t); %depois de transformador
-
 toff = 1/w * atan(1/(w*R1*C));
-
 v_fex = A*cos(w*toff)*exp(-(t-toff)/(R1*C));
 
 for i=1:length(t)
@@ -50,7 +48,7 @@ v0_2_dc = Von*n_diodes;
 vt = 0.025;
 Is = 1e-14;
 n = 1;
-Rd = n*vt/(Is*exp(Von/(n*vt)))
+Rd = n*vt/(Is*exp(Von/(n*vt)));
 
 for i = 1:length(t)
     v0_2_ac(i) = n_diodes*Rd/(n_diodes*Rd+R2) * (v0(i)-average);
@@ -76,5 +74,5 @@ fid2 = figure();
 plot (t*1000,v0_2-12);
 xlabel ("t(ms)")
 ylabel ("v (Volts)")
-print (fid2, "diferença.eps", "-depsc");
+print (fid2, "diferenca.eps", "-depsc");
 
