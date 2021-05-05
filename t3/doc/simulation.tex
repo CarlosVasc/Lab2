@@ -1,9 +1,30 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis}
+In this section, the intent is to simulate the circuit, using \textit{Ngspice}.
+
+Firstly, the AC/DC converter was subjected to a transient simulation for 10 periods. Then the outputs of the envelope detector and voltage regulator circuits were plotted as shown in the following figures, along with the output AC component plus DC Deviation plot.
+
+!!!!!!!!!!!!!!
 
 
+The output voltage ripple and the DC level were simulated aswell and are as follows.
+
+\begin{equation}
+    V_{Ripple} = ????
+\end{equation}
+\begin{equation}
+    DC Level = ???
+\end{equation}
 
 
+\subsection{Comparisons}
+\label{subsec:compare}
 
+In this last subsection, we present the values and plots obtained from the Theoretical Analysis and the Simulation Analysis that refer to the same sets of evaluations, for visualization purposes, and comment on their similarities or discrepancies.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
+
+
+All in all, there is an obvious difference between the theoretical and simulation results. The results obtained using \textit{Ngspice} are closer to the aimed values and oscillate less. The values obtained with Octave are smaller ($v_4(t)$ is closer to 11V, for example). Nevertheless, the overall wave forms are similar, the frequency of the signals is the same, and, by both approaches, the results satisfyingly accurate. 
+The discrepancies stem from the different considerations made in the theoretical model and in the Ngspice software's models. In the Ngspice models, the approximations used when diodes are involved are much more complex and accurate.
