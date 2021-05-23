@@ -7,7 +7,7 @@ w = 2*pi*f;
 
 %-----alterar-----
 C1 = 1e-06;
-C2 = 1e-04;
+C2 = 1e-03;
 RB1 = 80000;
 RB2 = 20000;
 RC1 = 1000;
@@ -98,11 +98,11 @@ AV = AV1.*AV2;
 AV_db=20*log10(AV);
 
 fid2 = figure ();
-plot (log10(f), AV_db);
+plot (log10(f), AV_db,log10(f),max(AV_db)-3);
 legend("v_o(f)/v_i(f)");
 xlabel ("Frequency [Hz]");
 ylabel ("Gain [db]");
-print (fid2, "Gain2.eps", "-depsc");
+print (fid2, "GainFinal.eps", "-depsc");
 
 
 k = 1;
